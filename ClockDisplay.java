@@ -1,16 +1,9 @@
-
 /**
- * The ClockDisplay class implements a digital clock display for a
- * European-style 24 hour clock. The clock shows hours and minutes. The 
- * range of the clock is 00:00 (midnight) to 23:59 (one minute before 
- * midnight).
+ * The ClockDisplay 3.39 is a clock that is 24hour internally but displays the time
+ * as a 12hr clock
  * 
- * The clock display receives "ticks" (via the timeTick method) every minute
- * and reacts by incrementing the display. This is done in the usual clock
- * fashion: the hour increments when the minutes roll over to zero.
- * 
- * @author Michael Kölling and David J. Barnes
- * @version 2011.07.31
+ * Author: Olive Tamondong
+ * Date: October 8, 2017
  */
 public class ClockDisplay
 {
@@ -76,9 +69,21 @@ public class ClockDisplay
     /**
      * Update the internal string that represents the display.
      */
-    private void updateDisplay()
+   private void updateDisplay()
     {
-        displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue();
+        if(hours.getValue() == 0)
+         displayString = "12:" + minutes.getDisplayValue() + " am";
+        
+        else if(0 < hours.getValue() && hours.getValue() <= 11)
+         displayString = hours.getDisplayValue() + ":" + 
+                        minutes.getDisplayValue() + " am";
+        
+        else if(hours.getValue() == 12)
+         displayString = "12: " + minutes.getDisplayValue() + " pm";
+           
+                         
+        else if( hours.getValue() > 12 )
+         displayString = (hours.getValue() % 12) + ":" +
+                        minutes.getDisplayValue() + " pm";
     }
-}
+
