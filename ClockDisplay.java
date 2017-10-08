@@ -86,4 +86,5 @@ public class ClockDisplay
          displayString = (hours.getValue() % 12) + ":" +
                         minutes.getDisplayValue() + " pm";
     }
+}
 
